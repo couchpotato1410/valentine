@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine 😏</title>
+
+<style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #ffeef2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    padding: 25px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    max-width: 420px;
+    width: 90%;
+    z-index: 10;
+}
+
+h1 {
+    color: #d63384;
+    font-size: 1.9rem;
+}
+
+.gif-container img {
+    width: 100%;
+    max-width: 260px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 12px 28px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#yesBtn {
+    background-color: #28a745;
+    color: white;
+}
+
+#yesBtn:hover {
+    transform: scale(1.15);
+}
+
+#noBtn {
+    background-color: #dc3545;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="gif-container">
+        <img id="mainGif"
+        src="https://media.giphy.com/media/8vQSQ3cNXuDGo/giphy.gif"
+        alt="cute menace">
+    </div>
+
+    <h1 id="questionText">
+        So… are you my Valentine or are we pretending this is a question? 😌
+    </h1>
+
+    <div class="buttons" id="btnGroup">
+        <button id="yesBtn">Obviously 😏</button>
+        <button id="noBtn">No</button>
+    </div>
+</div>
+
+<script>
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+const mainGif = document.getElementById('mainGif');
+const questionText = document.getElementById('questionText');
+const btnGroup = document.getElementById('btnGroup');
+
+const noTexts = [
+  "No 🙂",
+  "That’s cute",
+  "Wrong answer",
+  "Try again",
+  "Be serious",
+  "You know better",
+  "Careful 😏",
+  "Final chance",
+  "Don’t embarrass yourself"
+];
+
+const menaceTexts = [
+  "Choose wisely 😌",
+  "Think about what you’re doing",
+  "This is a safe space… for YES",
+  "We both know how this ends",
+  "You’re flirting at this point",
+  "3 years and you’re acting new"
+];
+
+let index = 0;
+
+// Menacing evasive No button
+const moveButton = () => {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+    noBtn.style.position = 'fixed';
+    noBtn.style.left = `${x}px`;
+    noBtn.style.top = `${y}px`;
+
+    noBtn.innerText = noTexts[index % noTexts.length];
+    questionText.innerText = menaceTexts[index % menaceTexts.length];
+    index++;
+};
+
+noBtn.addEventListener('mouseover', moveButton);
+noBtn.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    moveButton();
+});
+
+// YES = smug girlfriend victory 😈❤️
+yesBtn.addEventListener('click', () => {
+    questionText.innerText = "Good boy 😌💋 You’re officially my Valentine";
+    mainGif.src = "https://media.giphy.com/media/l0MYB8Ory7Hqefo9a/giphy.gif";
+    btnGroup.style.display = 'none';
+});
+</script>
+
+</body>
+</html>
